@@ -1,0 +1,26 @@
+project_root/
+├── backend/
+│   ├── api/                    # API endpoints
+│   │   ├── __init__.py        # Marks directory as Python package
+│   │   ├── auth.py           # Authentication endpoints
+│   │   ├── chat.py           # Chat/RAG endpoints with confidence scores
+│   │   ├── documents.py      # PDF serving endpoint
+│   ├── core/                   # Core utilities
+│   │   ├── __init__.py
+│   │   ├── config.py         # Pydantic settings
+│   │   ├── logging.py        # Centralized logging setup
+│   ├── rag/                    # RAG pipeline components
+│   │   ├── __init__.py
+│   │   ├── database.py       # ChromaDB initialization
+│   │   ├── ingest.py         # PDF ingestion with page numbers
+│   │   ├── memory.py         # Conversation history
+│   │   ├── rag_pipeline.py   # RAG query processing
+│   │   ├── vectorstore.py    # Vectorstore operations
+│   ├── data/                   # Data storage
+│   │   ├── RAGData/          # PDFs
+│   │   ├── employees.csv     # User data
+│   │   ├── ingested_files.json  # Tracks ingested PDFs with source_id
+│   ├── main.py                # FastAPI entry point
+│   ├── .env                  # Backend environment variables
+├── frontend/                   # Unchanged for this task
+├── requirements.txt           # Backend dependencies
