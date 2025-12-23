@@ -1,1 +1,0 @@
-{"num_ctx":8192,"num_gpu":-1,"num_thread":8,"repeat_penalty":1.05,"stop":["\u003c|eot_id|\u003e\" \"\u003c|/example|\u003e\" \"---"],"temperature":0.08,"top_k":45,"top_p":0.75}

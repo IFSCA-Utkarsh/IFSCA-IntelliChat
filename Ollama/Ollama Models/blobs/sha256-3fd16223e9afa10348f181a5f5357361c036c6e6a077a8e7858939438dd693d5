@@ -1,0 +1,1 @@
+{"num_ctx":16384,"num_predict":512,"repeat_penalty":1.08,"stop":["\u003c|eot_id|\u003e\" \"\u003c|end_of_text|\u003e\" \"Context:\" \"History:\" \"Question:"],"temperature":0.3,"top_k":40,"top_p":0.85}

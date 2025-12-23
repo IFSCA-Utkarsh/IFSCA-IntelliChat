@@ -17,7 +17,6 @@ security = HTTPBearer(auto_error=False)
 EMPLOYEES_FILE = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "employees.csv"))
 SECRET_KEY = settings.JWT_SECRET
 
-# === Cache employees ===
 _employees_df = None
 _df_lock = asyncio.Lock()
 

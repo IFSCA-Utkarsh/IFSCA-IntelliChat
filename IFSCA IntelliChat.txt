@@ -1,0 +1,55 @@
+# 1. Start Ollama server (in the Ollama directory where ollama.exe lives)
+cd C:\Utkarsh Mishra Projects\IFSCA-App\Ollama        # replace with your Ollama folder
+
+# start the Ollama daemon (keeps running in this terminal)
+.\ollama.exe serve
+
+open a NEW PowerShell window for the rest of the steps while the server runs
+
+# 2. First Time Environment variables for Ollama (make them a proper URL).
+setx OLLAMA_FLASH_ATTENTION "true"
+setx OLLAMA_KV_CACHE_TYPE "gpu"
+
+# 3. Prepare backend environment
+cd "C:\Utkarsh Mishra Projects\IFSCA-App\backend"
+
+# create a venv (if you haven't)
+python -m venv .\utkarsh
+
+# activate
+.\utkarsh\Scripts\Activate
+
+# install Python deps (adjust if you have a requirements.txt)
+pip install -r requirements.txt
+
+# 4. Ingest your PDFs -- Run after every  changes
+python -m backend.rag.ingest --drop
+
+# 5. Create a named Ollama model from a Modelfile (one-time)
+ollama create ifsca_utkarsh_rag_assistant -f Modelfile
+
+# run it (starts a container/instance)
+ollama run ifsca_utkarsh_rag_assistant
+
+
+# 6. Start backend API
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+
+# 7. Frontend
+cd "C:\Utkarsh Mishra Projects\IFSCA-App\Frontend"
+npm install
+npm run dev -- --host
+
+
+
+
+cd "C:\Utkarsh Mishra Projects\IFSCA-App\Ollama"
+.\ollama.exe serve
+cd "C:\Utkarsh Mishra Projects\IFSCA-App\Ollama"
+ollama run ifsca_utkarsh_rag_assistant
+cd "C:\Utkarsh Mishra Projects\IFSCA-App\backend"
+.\utkarsh\Scripts\Activate
+cd ..
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+cd "C:\Utkarsh Mishra Projects\IFSCA-App\Frontend"
+npm run dev -- --host

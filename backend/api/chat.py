@@ -11,7 +11,6 @@ from backend.core.logger import interaction_logger
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-# In-memory session store
 _user_memories: dict[str, AsyncConversationMemory] = {}
 _memory_lock = asyncio.Lock()
 

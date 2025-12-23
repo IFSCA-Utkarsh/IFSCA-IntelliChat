@@ -1,4 +1,3 @@
-# backend/api/documents.py
 import urllib.parse
 from pathlib import Path
 from fastapi import APIRouter, HTTPException

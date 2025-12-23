@@ -1,4 +1,3 @@
-# backend/rag/rag_pipeline.py
 import asyncio
 import time
 import numpy as np

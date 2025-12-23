@@ -1,4 +1,3 @@
-# backend/rag/ingest.py
 import asyncio
 import json
 import uuid
@@ -24,8 +23,8 @@ def load_tracked():
 
 
 async def ingest_folder(drop: bool = False) -> None:
-    embed_folder = Path(settings.rag_data_dir_abs)      # RAGData → for embedding
-    clean_folder = Path(settings.rag_data_dir_abs2)     # RAGData2 → for display & download
+    embed_folder = Path(settings.rag_data_dir_abs)      
+    clean_folder = Path(settings.rag_data_dir_abs2)    
 
     logger.info(f"Embedding source folder : {embed_folder}")
     logger.info(f"Clean PDF source folder : {clean_folder}")
@@ -51,7 +50,6 @@ async def ingest_folder(drop: bool = False) -> None:
             logger.info(f"Skipping (already ingested): {file_name}")
             continue
 
-        # Check clean version exists
         clean_path = clean_folder / file_name
         if not clean_path.exists():
             logger.warning(f"Clean PDF missing in RAGData2: {file_name} → will still show filename")
@@ -64,7 +62,7 @@ async def ingest_folder(drop: bool = False) -> None:
             for page in pages:
                 page.metadata.update({
                     "source_id": sid,
-                    "file_name": file_name,        # This is what user sees!
+                    "file_name": file_name,     
                     "page": page.metadata.get("page", 0) + 1,
                 })
 
@@ -79,7 +77,6 @@ async def ingest_folder(drop: bool = False) -> None:
         logger.info("No new documents to ingest.")
         return
 
-    # Chunk documents
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=settings.CHUNK_SIZE,
         chunk_overlap=settings.CHUNK_OVERLAP,
@@ -87,12 +84,10 @@ async def ingest_folder(drop: bool = False) -> None:
     chunks = splitter.split_documents(all_docs)
     logger.info(f"Created {len(chunks)} chunks")
 
-    # Add to vector store
     vs = get_vectorstore()
     await asyncio.to_thread(vs.add_documents, chunks)
     logger.info("All chunks successfully added to Chroma vector store!")
 
-    # Save tracking
     final_tracking = new_entries if drop else (tracked + new_entries)
     TRACK_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(TRACK_FILE, "w", encoding="utf-8") as f:

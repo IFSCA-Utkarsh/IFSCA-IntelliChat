@@ -1,8 +1,0 @@
-2025-11-24 16:00:05,126 - backend.core.logging - INFO - Loading vectorstore and initializing LLM...
-2025-11-24 16:00:08,500 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
-2025-11-24 16:00:21,238 - backend.core.logging - INFO - Backend ready
-2025-11-24 16:00:26,794 - backend.api.auth - INFO - Login: Chirag_Ravat | Information and Technology
-2025-11-24 16:00:41,808 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
-2025-11-24 16:00:44,456 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
-2025-11-24 16:05:51,697 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
-2025-11-24 16:06:35,487 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
